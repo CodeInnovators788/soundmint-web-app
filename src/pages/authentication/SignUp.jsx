@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
-export default function Signup() {
+export default function SignUp() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

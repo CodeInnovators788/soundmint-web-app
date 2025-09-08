@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import Login from './pages/auth/Login';
-import Signup from './pages/auth/Signup';
+import Login from './pages/authentication/Login';
+import SignUp from './pages/authentication/SignUp';
 import Onboarding from './pages/onboarding/Onboarding';
 import Dashboard from './pages/dashboard/Dashboard';
 import VideoToAudio from './pages/filesConversion/VideoToAudio';
@@ -39,7 +39,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AuthRedirect />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/videoToAudio" element={<VideoToAudio />} />

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@dataconnect/generated": "file:src/dataconnect-generated",
+    "@reduxjs/toolkit": "^2.9.0",
     "@tailwindcss/vite": "^4.1.13",
     "axios": "^1.11.0",
     "D": "^1.0.0",
@@ -19,6 +20,7 @@
     "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.8.2"
   },
   "devDependencies": {

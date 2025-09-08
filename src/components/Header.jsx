@@ -5,11 +5,14 @@ import { getAuth, signOut } from 'firebase/auth';
 import { Menu, X } from 'lucide-react';
 import DropdownMenu from './DropdownMenu';
 import SlidingPanel from './SlidingPanel';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const navigate = useNavigate();
   const popoverRef = useRef(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const authentication = useSelector((state) => state.authentication);
+  console.log('Authenticated User:', authentication.user);
   const [profilePanelOpen, setProfilePanelOpen] = useState(false);
 
   const convertItems = [
@@ -32,6 +35,11 @@ export default function Header() {
   const handleConvertOption = (path) => {
     navigate(path);
     setMobileMenuOpen(false);
+  };
+
+  const getGooglePhoto = (url) => {
+    if (!url) return null;
+    return url.includes('=s') ? url : `${url}=s128-c`;
   };
 
   return (
@@ -93,6 +101,25 @@ export default function Header() {
             >
               Logout
             </span>
+
+            {/* 👇 User Avatar with Gradient Border + Shadow */}
+            <div
+              onClick={() => setProfilePanelOpen(true)}
+              className="w-11 h-11 rounded-full p-[2px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-lg cursor-pointer"
+            >
+              <img
+                src={
+                  getGooglePhoto(authentication.user?.photoURL) ||
+                  `https://ui-avatars.com/api/?name=${
+                    authentication.user?.displayName ||
+                    authentication.user?.name ||
+                    'Guest'
+                  }&background=4f46e5&color=fff`
+                }
+                alt="User Avatar"
+                className="w-full h-full rounded-full object-cover"
+              />
+            </div>
           </nav>
 
           {/* Mobile Hamburger */}
@@ -156,8 +183,13 @@ export default function Header() {
         title="Profile"
       >
         <div className="flex flex-col gap-4">
-          <p className="font-semibold text-gray-700">User: John Doe</p>
-          <p className="text-gray-500">Email: johndoe@example.com</p>
+          <p className="font-semibold text-gray-700">
+            User:{' '}
+            {authentication.user?.displayName ||
+              authentication.user?.name ||
+              'Guest'}
+          </p>
+          <p className="text-gray-500">Email: {authentication.user?.email}</p>
           <button
             onClick={handleLogout}
             className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
