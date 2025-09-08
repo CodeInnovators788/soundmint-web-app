@@ -13,6 +13,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import VideoToAudio from './pages/filesConversion/VideoToAudio';
 import VolumeEnhancer from './pages/filesConversion/VolumeEnhancer';
 import NoiseClear from './pages/filesConversion/NoiseClear';
+import VideoToNoiseFreeMP3 from './pages/filesConversion/VideoToNoiseFreeMP3';
 
 function AuthRedirect() {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/videoToAudio" element={<VideoToAudio />} />
         <Route path="/volumeEnhancer" element={<VolumeEnhancer />} />
         <Route path="/noiseClear" element={<NoiseClear />} />
+        <Route path="/videoToNoiseClear" element={<VideoToNoiseFreeMP3 />} />
       </Routes>
     </Router>
   );
